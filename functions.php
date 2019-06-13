@@ -1,4 +1,6 @@
 <?php 
+setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+date_default_timezone_set('America/Sao_Paulo');
     function createObject( $id, $name, $age, $job, $date, $company){
        $object=new people();
 
@@ -19,7 +21,7 @@
     function cmpmonth($a, $b){
         $monthA=date("n",strtotime($a->date));
         $monthB=date("n",strtotime($b->date));
-        return strcmp($monthA, $monthB);
+        return strcmp($monthB, $monthA);
     }
 
     function OrderByDate($people){

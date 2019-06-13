@@ -1,7 +1,7 @@
 <?php
     include 'people.php';
     include 'functions.php';
-
+    setlocale(LC_ALL, 'pt_BR');
     $people[] = new people();
     $people[0]=createObject(1, "Maria", 26, "Recepcionista", "2017-01-27", "Empresa A");
     $people[1]=createObject(2, "Thiago", 30, "Técnico", "2018-06-04", "Empresa B");
