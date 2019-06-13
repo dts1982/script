@@ -16,3 +16,9 @@ $people=orderByMonth($people);
 foreach($people as $person){
     echo date("F",strtotime($person->date))."-".$person->name."<br/>";
 }
+$group=groupByJob($people);
+$i=0;
+foreach($group['job'] as $g){
+    echo $g."-".$group['qtd'][$i]."<br/>";
+    $i++;
+}

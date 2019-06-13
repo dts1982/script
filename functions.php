@@ -34,12 +34,38 @@ function orderByMonth($people)
 function groupByJob($people)
 {
     $jobs=[];
+    $quantidades=[];
+    $alljobs=[];
+    
     foreach($people as $person){
-        if(array_search($person->job, $jobs)==0){
-            $array= array_search($person->job, $people);
-            array_push($jobs, $person->job);
-        }
-        
-
+        array_push($alljobs, $person->job);
     }
+    foreach($people as $person){
+        if(array_search($person->job, $jobs)==""){
+            $array= count_repeat_values($person->job, $alljobs);
+            array_push($jobs, $person->job);
+            array_push($quantidades, $array);
+        }
+    }
+    $all=[
+        'job'=>$jobs,
+        'qtd'=>$quantidades
+    ];
+    return $all;
+}
+
+function count_repeat_values($needle, $haystack){
+   
+    $x = count($haystack);
+   
+    for($i = 0; $i < $x; $i++){
+       
+        if($haystack[$i] == $needle){
+            $needle_array[] = $haystack[$i];
+        }
+    }
+   
+    $number_of_instances = count($needle_array);
+   
+    return $number_of_instances;
 }
