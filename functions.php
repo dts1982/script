@@ -1,17 +1,17 @@
 <?php 
     function createObject( $id, $name, $age, $job, $date, $company){
        $object=new people();
-    
+
         $object->id=$id;
         $object->name=$name;
         $object->age=$age;
         $object->job=$job;
         $object->date= $date;
         $object->company=$company;
-    
+
         return $object;
     }
-    
+
     function cmp($a, $b)
     {
         return strcmp($a->date, $b->date);
@@ -21,7 +21,7 @@
         $monthB=date("n",strtotime($b->date));
         return strcmp($monthA, $monthB);
     }
-    
+
     function OrderByDate($people){
         usort($people, "cmp");
         return $people;
@@ -34,9 +34,9 @@
     function groupByJob($people)
     {
         $jobs=[];
-        $quantidades=[];
+        $quantity=[];
         $alljobs=[];
-        
+
         foreach($people as $person){
             array_push($alljobs, $person->job);
         }
@@ -44,16 +44,16 @@
             if(array_search($person->job, $jobs)==""){
                 $array= count_repeat_values($person->job, $alljobs);
                 array_push($jobs, $person->job);
-                array_push($quantidades, $array);
+                array_push($quantity, $array);
             }
         }
         $all=[
             'job'=>$jobs,
-            'qtd'=>$quantidades
+            'qtd'=>$quantity
         ];
         return $all;
     }
-    
+
     function count_repeat_values($needle, $haystack){
     
         $x = count($haystack);
