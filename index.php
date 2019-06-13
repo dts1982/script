@@ -1,7 +1,9 @@
 <?php
     include 'people.php';
     include 'functions.php';
-    setlocale(LC_ALL, 'pt_BR');
+    setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+    date_default_timezone_set('America/Sao_Paulo');
+
     $people[] = new people();
     $people[0]=createObject(1, "Maria", 26, "Recepcionista", "2017-01-27", "Empresa A");
     $people[1]=createObject(2, "Thiago", 30, "Técnico", "2018-06-04", "Empresa B");
@@ -13,7 +15,8 @@
     $people=orderByMonth($people);
     
     foreach($people as $person){
-        echo date("F",strtotime($person->date))."-".$person->name."<br/>";
+        $month = ucfirst(strftime("%B", strtotime($person->date) ) );
+        echo $month."-".$person->name."<br/>";
     }
 
     $group=groupByJob($people);
